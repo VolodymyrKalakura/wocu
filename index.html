@@ -267,22 +267,19 @@
 	<script src="js/app.js"></script>
 	
 <script>
-	$('#form').submit(function(e){
-		var popup = $('#popup_text');
-		e.preventDefault();
-		$.ajax({
-			url: "/uuou.php",
-			type: "POST",
-			data: $('#form').serialize(),
-			success: function(response) {
-	//обработка успешной отправки
-	popup.html('Ваше сообщение успешно отправлено!').delay(2000).fadeOut(1000);
-	
-	$('.form__name').val('');
-	$('.form__phone').val('');
-},
+	$(document).ready(function(){
+    $("#form").submit(function() {
+        var form_data = $(this).serialize();
+        $.ajax({
+        type: "POST",
+        url: "send.php",
+        data: form_data,
+        success: function() {
+               alert("Ваше сообщение отпрвлено!");
+        } // забыли закрыть success
+      });
+    });
 });
-	});
 	</script>
 </body>
 
